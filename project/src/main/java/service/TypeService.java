@@ -9,6 +9,8 @@ public interface TypeService {
 	
 	public List<Type> select(String txt);
 	
+	public List<Type> selectType();
+	
 	public Type selectById(int id);
 	
 	public int insert(Type b);

@@ -29,4 +29,8 @@ public class TypeService_Impl implements TypeService{
 	public int delete(int id) {
 		return dao.delete(id);
 	}
+
+	public List<Type> selectType() {
+		return dao.selectType();
+	}
 }

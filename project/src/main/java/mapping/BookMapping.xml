@@ -2,15 +2,15 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="dao.BookDao">    <!-- xml与接口dao关联 -->
+<!--  <mapper namespace="dao.BookDao">    xml与接口dao关联
 <select id="select" resultType="entity.Book" parameterType="java.lang.String">
-<!--  select * from type ${_parameter} -->
+ select * from type ${_parameter}
 select book.* ,type.name typename from book inner join type on book.typeid=type.id ${_parameter}
  </select> 
   <select id="selectById" resultType="entity.Book" parameterType="int" >
  select * from book where id=#{id}
  </select>
-<!--  <insert id="insert" parameterType="model.Type">
+ <insert id="insert" parameterType="model.Type">
  insert into type(name) values(#{name})
- </insert>  -->
- </mapper>
+ </insert> 
+ </mapper> -->

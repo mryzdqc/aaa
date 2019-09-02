@@ -16,8 +16,13 @@ public interface BookDao {
 //	public List<Book> select(@Param("txt") String txt);
 	
 	
-	public List<Book> select(String txt);
+	@Select("select count(1) from Book inner join Type on Book.typeid=Type.id ${name}")
+	public int selectCount(@Param("name") String name);
 	
+	@Select("select Book.*,type.name typename from Book inner join Type on Book.typeid=Type.id ${name} ${limit}")
+	public List<Book> select(@Param("name") String name,@Param("limit") String limit);
+	
+	@Select("select * from Book where id=#{id}")
 	public Book selectById(int id);
 	
 	@Insert("insert into book(name,sex,typeid) values(#{name},#{sex},#{typeid})")

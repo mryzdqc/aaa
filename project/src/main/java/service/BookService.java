@@ -4,10 +4,11 @@ import java.util.List;
 
 
 import entity.Book;
+import utils.ReturnInfo;
 
 public interface BookService {
 	
-	public List<Book> select(String txt);
+	public ReturnInfo  select(String txt,Integer page,Integer limit);
 	
 	public Book selectById(int id);
 	

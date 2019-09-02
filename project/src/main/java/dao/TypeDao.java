@@ -24,5 +24,8 @@ public interface TypeDao {
 	
 	@Delete("delete from Type where id=#{id}")
 	public int delete(int id);
+	
+	@Select("select * from type ")
+	public List<Type> selectType();
 
 }
