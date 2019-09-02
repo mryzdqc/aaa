@@ -33,4 +33,9 @@ public class TypeService_Impl implements TypeService{
 	public List<Type> selectType() {
 		return dao.selectType();
 	}
+
+	public int update(Type t) {
+		
+		return dao.update(t);
+	}
 }

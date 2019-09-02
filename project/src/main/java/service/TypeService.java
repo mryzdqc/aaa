@@ -16,4 +16,6 @@ public interface TypeService {
 	public int insert(Type b);
 	
 	public int delete(int id);
+	
+	public int update(Type t);
 }
