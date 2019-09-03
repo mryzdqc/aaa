@@ -4,12 +4,12 @@
 <!DOCTYPE html >
 <html>
 <head>
-
+<base href="../">
 <meta charset="UTF-8">
-<link href="../layui/css/layui.css" rel="stylesheet">
-<script type="text/javascript" src="../layui/layui.all.js"></script>
-<script src="../js/jquery-2.2.4.min.js" ></script>
-<script type="text/javascript" src="../js/my.js"></script>
+<link href="layui/css/layui.css" rel="stylesheet">
+<script type="text/javascript" src="layui/layui.all.js"></script>
+<script src="js/jquery-2.2.4.min.js" ></script>
+<script type="text/javascript" src="js/my.js"></script>
 
 <title></title>
 </head>
@@ -20,13 +20,12 @@
 
 
 
-<c:if test="${param.id==null}">
-<form class="layui-form" lay-filter="myform" action="insert.action">
-</c:if>
+<form class="layui-form" lay-filter="myform">
+
 <c:if test="${param.id!=null}">
-<form class="layui-form" lay-filter="myform" action="update.action">
 <input type="hidden" name="id" >
 </c:if>
+
   <div class="layui-form-item">
     <label class="layui-form-label">名称</label>
     <div class="layui-input-block">
@@ -62,14 +61,20 @@ var id="${param.id}";
 layui.use(['form',], function(){
 	  var form = layui.form;
 	  form.on('submit(demo1)', function(data){
+		  
+		  var s="Book/Book";
+		  
 		  var params=data.field;
-		  if(id.length>0)
-		  	  params["_method"]="PUT";//修改
-		  else
-			  params["_method"]="POST";//插入
+		  if(id.length>0){
+			  s="Book/Book/"+id;
+			  params["_method"]="PUT";//修改
+		  }
+		  	 
+		  //else
+		  //  params["_method"]="POST";//插入
 		  //var json1 = JSON.stringify(params)
 		 //console.log(json1);
-		 $.post($("form").attr("action"), params, function(json) {
+		 $.post(s, params, function(json) {
 			 //console.log(data.field);
 			  closeFrame();
 			  parent.fresh('demo');
@@ -83,18 +88,18 @@ layui.use(['form',], function(){
 
 
 function init(){
-	$.post("edit.action",{_method:"GET",id:id}, function(json) {
+	$.post("Book/Book/"+id,{_method:"GET"}, function(json) {
 		render('myform', json);
-		getarray("getSexs.action",{_method:"GET"},"[name=sex]",json.sex);
-		getlist("getTypes.action",{_method:"GET"},"[name=typeid]",json.typeid);
+		getarray("Book/getSexs",{_method:"GET"},"[name=sex]",json.sex);
+		getlist("Book/getTypes",{_method:"GET"},"[name=typeid]",json.typeid);
 	},"json");
 	
 } 
 if(id.length>0){
 	init();
 }else{
-	getarray("getSexs.action",{_method:"GET"},"[name=sex]",0);
-	getlist("getTypes.action",{_method:"GET"},"[name=typeid]",0);
+	getarray("Book/getSexs",{_method:"GET"},"[name=sex]",0);
+	getlist("Book/getTypes",{_method:"GET"},"[name=typeid]",0);
 }
 
 </script>

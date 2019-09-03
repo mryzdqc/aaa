@@ -3,11 +3,12 @@
 <!DOCTYPE html >
 <html>
 <head>
+<base href="../">
 <meta charset="UTF-8">
-<link href="../layui/css/layui.css" rel="stylesheet">
-<script type="text/javascript" src="../layui/layui.all.js"></script>
-<script src="../js/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="../js/my.js"></script>
+<link href="layui/css/layui.css" rel="stylesheet">
+<script type="text/javascript" src="layui/layui.all.js"></script>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="js/my.js"></script>
 <title></title>
 <style type="text/css">
 .input {
@@ -47,7 +48,7 @@
 			table.render({
 				elem : '#demo',
 				height : 462,
-				url : 'index2.action' //数据接口
+				url : 'Book/Book' //数据接口
 				,
 				toolbar : '#toolbarDemo',
 				page : true //开启分页
@@ -99,14 +100,14 @@
 				if (obj.event === 'del') { ///lay-event 属性
 					
 					myconfirm("刪除？",function(){
-						$.post("delete.action", {_method:"DELETE",id : data.id}, 
+						$.post("Book/Book/"+data.id, {_method:"DELETE"}, 
 								function(json) {
 							reload('demo');
 							layer.close(layer.index);
 								}, "json");
 					});
 				}else{
-					 openFrame('edit0.action?id='+data.id);
+					 openFrame('Book/edit0?id='+data.id);
 					//openFrame('edit0.action');
 				}
 			});
@@ -116,7 +117,7 @@
 					var txt = $(event.target).prev().find("input").val();
 					reload('demo',{_method:"GET",txt : txt});//传入txt,重新加载页面
 				} else {
-					openFrame("add.action");
+					openFrame("Book/add");
 				}
 			});
 
